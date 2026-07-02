@@ -1,0 +1,31 @@
+<form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="!submitted">
+  <div class="field">
+    <label class="mono" for="name">name</label>
+    <input id="name" type="text" formControlName="name" placeholder="Your name" />
+    <div class="hint error" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">required</div>
+  </div>
+
+  <div class="field">
+    <label class="mono" for="email">email</label>
+    <input id="email" type="email" formControlName="email" placeholder="you@example.com" />
+    <div class="hint error" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">valid email required</div>
+  </div>
+
+  <div class="field">
+    <label class="mono" for="message">message</label>
+    <textarea id="message" rows="4" formControlName="message" placeholder="Say hello..."></textarea>
+    <div class="hint error" *ngIf="form.get('message')?.touched && form.get('message')?.invalid">required</div>
+  </div>
+
+  <button type="submit" [disabled]="submitting">
+    {{ submitting ? 'sending…' : 'send message' }}
+  </button>
+
+  <div class="hint error" *ngIf="error">
+    Something went wrong reaching the server. Please try again.
+  </div>
+</form>
+
+<div class="success mono" *ngIf="submitted">
+  ✓ message received — stored in MySQL, thanks for reaching out.
+</div>
