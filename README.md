@@ -31,7 +31,7 @@ This project is already set up to run with Docker Compose.
 
    Backend environment file: backend/.env
    ```env
-   SPRING_DATASOURCE_URL=jdbc:mysql://sql:3306/portfolio_db?allowPublicKeyRetrieval=true&useSSL=false
+   SPRING_DATASOURCE_URL=jdbc:mysql://sql:3306/portfolio_db
    SPRING_DATASOURCE_USERNAME=root
    SPRING_DATASOURCE_PASSWORD=your_mysql_password
    ```
@@ -46,15 +46,20 @@ This project is already set up to run with Docker Compose.
 
 3. Start everything:
    ```bash
-   docker compose up --build
+   docker compose up --build -d
    ```
 
-4. Open the app:
+4. To list the containers defined in your docker-compose.yml file, showing their names, status, ports, etc.
+   ```bash
+   docker compose ps -a
+   ```
+
+6. Open the app:
    - Frontend: http://localhost:4200
    - Backend API: http://localhost:8080/api/profile
    - MySQL: localhost:3306
 
-5. To stop the containers:
+7. To stop the containers:
    ```bash
    docker compose down
    ```
