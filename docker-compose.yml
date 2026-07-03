@@ -1,0 +1,72 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    depends_on:
+      sql:
+        condition: service_healthy
+    env_file:
+      - ./backend/.env
+    networks:
+      - backend_network
+      - frontend_network
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/api/profile"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 45s
+
+  sql:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    container_name: sql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    env_file:
+      - ./database/.env
+    volumes:
+      - sql_data:/var/lib/mysql
+      - ./database/schema_reference.sql:/docker-entrypoint-initdb.d/01_schema.sql
+      - ./database/data.sql:/docker-entrypoint-initdb.d/02_data.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - backend_network
+ 
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    restart: unless-stopped
+    ports:
+      - "4200:80"
+    networks:
+      - frontend_network
+    depends_on:
+      backend:
+        condition: service_healthy
+      sql:
+        condition: service_healthy
+
+volumes:
+  sql_data:
+
+networks:
+  backend_network:
+    driver: bridge
+  frontend_network:
+    driver: bridge

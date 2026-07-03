@@ -6,11 +6,11 @@
 -- ---------- PROFILE ----------
 INSERT INTO profile (full_name, title, location, phone, email, linkedin_url, summary) VALUES
 ('Shahif A',
- 'DevOps Engineer | Cloud Engineer (AWS, Azure) | Backend Java Developer - 3+ Years Experience',
+ 'DevOps Engineer | Backend Java Developer - 3+ Years Experience',
  'Bangalore, Karnataka',
  '+91 6384061578',
  'ashahifj2108@gmail.com',
- 'https://linkedin.com/in/shahifa',
+ 'linkedin.com/in/shahif-a-22b859341',
  'Results-driven DevOps and Cloud Engineer with 3+ years of experience at Genpact, combining backend Java and Spring Boot development with hands-on Amazon Web Services (AWS) and Microsoft Azure infrastructure engineering. Proven track record reducing production failure rates from 3.5% to 0.013% through proactive monitoring, and building end-to-end CI/CD pipelines using Jenkins and GitHub Actions, Infrastructure as Code (IaC) using Terraform and Ansible, and full-stack observability using Prometheus, Grafana, and Azure Application Insights. Skilled in Docker and Kubernetes containerization, automated file transfer workflows, root cause analysis, and cross-functional collaboration. Seeking a DevOps Engineer, Cloud Engineer, or Site Reliability Engineer role to drive reliability, automation, and scalable cloud architecture.');
 
 -- ---------- SKILLS ----------

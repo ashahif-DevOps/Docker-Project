@@ -100,3 +100,5 @@ The Angular app will run at http://localhost:4200.
 - Create local .env files for backend and database settings. These are ignored by Git and should never be committed.
 - If you are new to the project, do not worry about the ignore rules at first; just create the .env files listed above and the app will run normally.
 - The root .gitignore and .dockerignore files are already set up for this project so local secrets, dependencies, build output, and editor files stay out of Git.
+- For a more DevOps-friendly workflow, the project now uses Docker health checks, restart policies, and environment-based configuration so it is easier to run and maintain.
+

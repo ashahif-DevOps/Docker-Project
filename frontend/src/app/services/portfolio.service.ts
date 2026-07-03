@@ -5,13 +5,14 @@ import {
   Profile, Experience, Skill, Project,
   Achievement, Certification, Education, ContactMessage
 } from '../models/portfolio.models';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PortfolioService {
-  // Points at the Spring Boot backend (see WebConfig.java for CORS)
-  private baseUrl = 'http://localhost:8080/api';
+  // Points at the Spring Boot backend via environment configuration
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

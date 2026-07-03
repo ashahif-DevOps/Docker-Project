@@ -18,7 +18,7 @@
         <span class="sep">·</span>
         <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
         <span class="sep">·</span>
-        <a [href]="profile.linkedinUrl" target="_blank">linkedin.com/in/shahifa</a>
+        <a [href]="profile.linkedinUrl" target="_blank">LinkedIn</a>
       </div>
 
       <p class="summary">{{ profile.summary }}</p>
@@ -27,25 +27,11 @@
     <div *ngIf="loadError" class="mono error-line">
       // Could not reach the API at localhost:8080. Is the Spring Boot backend running?
     </div>
-
-    <!-- Signature element: the headline reliability metric from the resume, as a live gauge -->
-    <div class="metric-panel" *ngIf="profile">
-      <div class="metric-label mono">// FAILURE RATE — LAST DEPLOYMENT CYCLE</div>
-      <div class="metric-track">
-        <div class="metric-before">3.5%</div>
-        <div class="metric-arrow">→</div>
-        <div class="metric-after">0.013%</div>
-      </div>
-      <div class="metric-bar">
-        <div class="metric-bar-fill"></div>
-      </div>
-      <div class="metric-caption mono">reduced via real-time monitoring &amp; alerting — APS Bronze Cheers Award</div>
-    </div>
   </header>
 
   <!-- ===== SKILLS ===== -->
   <section class="panel" *ngIf="skills.length">
-    <h2 class="section-label mono">$ cat skills.log</h2>
+    <h2 class="section-label">Skills</h2>
     <div class="skills-grid">
       <div class="skill-card" *ngFor="let s of skills">
         <div class="skill-category">{{ s.category }}</div>
@@ -56,7 +42,7 @@
 
   <!-- ===== EXPERIENCE ===== -->
   <section class="panel" *ngIf="experience.length">
-    <h2 class="section-label mono">$ tail -f experience.log</h2>
+    <h2 class="section-label">Experience</h2>
     <div class="timeline">
       <div class="timeline-entry" *ngFor="let job of experience">
         <div class="timeline-rail">
@@ -78,7 +64,7 @@
 
   <!-- ===== PROJECTS ===== -->
   <section class="panel" *ngIf="projects.length">
-    <h2 class="section-label mono">$ ls -la projects/</h2>
+    <h2 class="section-label">Projects</h2>
     <div class="projects-grid">
       <div class="project-card" *ngFor="let p of projects">
         <div class="project-title">{{ p.title }}</div>
@@ -91,13 +77,13 @@
   <!-- ===== ACHIEVEMENTS + CERTIFICATIONS ===== -->
   <section class="panel two-col" *ngIf="achievements.length || certifications.length">
     <div>
-      <h2 class="section-label mono">$ cat achievements.log</h2>
+      <h2 class="section-label">Achievements</h2>
       <ul class="plain-list">
         <li *ngFor="let a of achievements">{{ a.description }}</li>
       </ul>
     </div>
     <div>
-      <h2 class="section-label mono">$ cat certifications.log</h2>
+      <h2 class="section-label">Certifications</h2>
       <ul class="plain-list">
         <li *ngFor="let c of certifications">
           <strong>{{ c.name }}</strong> — {{ c.issuer }} <span class="mono muted">({{ c.issuedDate }})</span>
@@ -108,7 +94,7 @@
 
   <!-- ===== EDUCATION ===== -->
   <section class="panel" *ngIf="education.length">
-    <h2 class="section-label mono">$ cat education.log</h2>
+    <h2 class="section-label">Education</h2>
     <div class="edu-card" *ngFor="let e of education">
       <div class="edu-degree">{{ e.degree }}</div>
       <div class="edu-institution mono">{{ e.institution }}</div>
@@ -118,12 +104,12 @@
 
   <!-- ===== CONTACT ===== -->
   <section class="panel">
-    <h2 class="section-label mono">$ ./send-message.sh</h2>
+    <h2 class="section-label">Contact</h2>
     <app-contact-form></app-contact-form>
   </section>
 
   <footer class="footer mono muted">
-    // rendered by Angular · served by Spring Boot · data persisted in MySQL
+    rendered by Angular · served by Spring Boot · data persisted in MySQL
   </footer>
 
 </div>

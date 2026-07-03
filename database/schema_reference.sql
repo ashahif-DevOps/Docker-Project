@@ -4,6 +4,8 @@
 -- on first run, based on the JPA entities. This file is here so you can see
 -- the shape of the database, or create it by hand if you prefer.
 
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Shahif@21';
+
 CREATE DATABASE IF NOT EXISTS portfolio_db;
 USE portfolio_db;
 

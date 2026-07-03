@@ -1,23 +1,46 @@
+<div class="contact-header">
+  <button type="button" class="view-btn" (click)="toggleHistory()" [attr.aria-label]="'View submitted messages'">
+    <!-- eye icon -->
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </svg>
+    <span>view submitted ({{ sentMessages.length }})</span>
+  </button>
+</div>
+
+<div class="history-panel" *ngIf="showHistory">
+  <div class="empty" *ngIf="sentMessages.length === 0">No messages submitted yet.</div>
+  <div class="history-item" *ngFor="let m of sentMessages">
+    <div class="history-top">
+      <span class="history-name">{{ m.name }}</span>
+      <span class="history-time">{{ m.sentAt | date:'MMM d, y, h:mm a' }}</span>
+    </div>
+    <div class="history-email">{{ m.email }}</div>
+    <div class="history-message">{{ m.message }}</div>
+  </div>
+</div>
+
 <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="!submitted">
   <div class="field">
-    <label class="mono" for="name">name</label>
+    <label for="name">name</label>
     <input id="name" type="text" formControlName="name" placeholder="Your name" />
     <div class="hint error" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">required</div>
   </div>
 
   <div class="field">
-    <label class="mono" for="email">email</label>
+    <label for="email">email</label>
     <input id="email" type="email" formControlName="email" placeholder="you@example.com" />
     <div class="hint error" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">valid email required</div>
   </div>
 
   <div class="field">
-    <label class="mono" for="message">message</label>
+    <label for="message">message</label>
     <textarea id="message" rows="4" formControlName="message" placeholder="Say hello..."></textarea>
     <div class="hint error" *ngIf="form.get('message')?.touched && form.get('message')?.invalid">required</div>
   </div>
 
-  <button type="submit" [disabled]="submitting">
+  <button type="submit" class="submit-btn" [disabled]="submitting">
     {{ submitting ? 'sending…' : 'send message' }}
   </button>
 
@@ -26,6 +49,7 @@
   </div>
 </form>
 
-<div class="success mono" *ngIf="submitted">
-  ✓ message received — stored in MySQL, thanks for reaching out.
+<div class="success" *ngIf="submitted">
+  <span>Submitted</span>
+  <button type="button" class="link-btn" (click)="sendAnother()">send another</button>
 </div>

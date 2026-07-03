@@ -1,0 +1,34 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# Java / Maven
+**/target/
+**/.classpath
+**/.project
+**/.settings/
+**/.factorypath
+
+# Node / Angular
+**/node_modules/
+**/dist/
+**/.angular/
+**/.sass-cache/
+
+# Environment files
+**/.env
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+mvn-debug.log*
+
+# Docker build artifacts
+**/*.tar
