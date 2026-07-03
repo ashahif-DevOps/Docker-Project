@@ -1,97 +1,102 @@
-# Shahif A — Portfolio Website
-Angular + Java (Spring Boot) + MySQL
+# Shahif A Portfolio
 
-Your resume content lives in MySQL, is served by a Spring Boot REST API,
-and is rendered by an Angular front end. The contact form on the site
-writes real rows into MySQL.
+A full-stack portfolio website built with Angular, Spring Boot, and MySQL. The frontend displays your profile, experience, skills, projects, certifications, and achievements, while the backend exposes REST APIs and the contact form stores messages in the database.
 
-```
+## Tech stack
+- Frontend: Angular 18 + TypeScript
+- Backend: Java 17 + Spring Boot + Spring Data JPA
+- Database: MySQL 8
+- Container setup: Docker Compose
+
+## Project structure
+```text
 portfolio/
-├── backend/     Spring Boot API (Java 17, Maven)
-├── frontend/    Angular app
-└── database/    Reference SQL schema (optional — see below)
+├── backend/      Spring Boot API
+├── frontend/     Angular app
+├── database/     MySQL container setup and SQL seed files
+├── docker-compose.yml
+└── README.md
 ```
 
-## 1. Database (MySQL)
+## Quick start with Docker (recommended)
 
-Install MySQL 8+ if you don't have it, then just start it — you do **not**
-need to run any SQL by hand. On first launch, the backend will:
-1. Create the `portfolio_db` database
-2. Create all tables from the JPA entities
-3. Load your resume content from `data.sql`
+This project is already set up to run with Docker Compose.
 
-You only need to set your MySQL password in one file:
+1. Make sure Docker Desktop or Docker Engine is running.
+2. Create the local environment files that are ignored by Git:
 
-`backend/src/main/resources/application.properties`
-```
-spring.datasource.password=your_mysql_password
-```
+   Backend environment file: backend/.env
+   ```env
+   SPRING_DATASOURCE_URL=jdbc:mysql://sql:3306/portfolio_db?allowPublicKeyRetrieval=true&useSSL=false
+   SPRING_DATASOURCE_USERNAME=root
+   SPRING_DATASOURCE_PASSWORD=your_mysql_password
+   ```
 
-(`database/schema_reference.sql` is included only so you can see the table
-shapes — it's not required.)
+   Database environment file: database/.env
+   ```env
+   MYSQL_ROOT_PASSWORD=your_mysql_password
+   MYSQL_DATABASE=portfolio_db
+   ```
 
-## 2. Backend (Spring Boot)
+   These files are intentionally not committed because they contain local secrets and machine-specific settings.
 
-Requires Java 17+ and Maven.
+3. Start everything:
+   ```bash
+   docker compose up --build
+   ```
 
+4. Open the app:
+   - Frontend: http://localhost:4200
+   - Backend API: http://localhost:8080/api/profile
+   - MySQL: localhost:3306
+
+5. To stop the containers:
+   ```bash
+   docker compose down
+   ```
+
+   To remove the database volume as well:
+   ```bash
+   docker compose down -v
+   ```
+
+## Local development
+
+### Backend
 ```bash
 cd backend
 mvn spring-boot:run
 ```
 
-Runs on **http://localhost:8080**. Test it: open
-`http://localhost:8080/api/profile` in a browser — you should see your
-profile JSON.
+The API will be available at http://localhost:8080.
 
-**Important — after the first successful run**, open
-`application.properties` and change:
-```
-spring.sql.init.mode=always
-```
-to
-```
-spring.sql.init.mode=never
-```
-Otherwise `data.sql` re-inserts duplicate rows every time you restart.
-
-### API endpoints
-| Method | Endpoint | Purpose |
-|---|---|---|
-| GET | `/api/profile` | Name, title, summary, contact info |
-| GET | `/api/experience` | Work history with bullets |
-| GET | `/api/skills` | Skills grouped by category |
-| GET | `/api/projects` | Projects list |
-| GET | `/api/achievements` | Achievements list |
-| GET | `/api/certifications` | Certifications list |
-| GET | `/api/education` | Education history |
-| POST | `/api/contact` | Save a contact form message |
-
-## 3. Frontend (Angular)
-
-Requires Node.js 18+ and the Angular CLI (`npm install -g @angular/cli`).
-
+### Frontend
 ```bash
 cd frontend
 npm install
-ng serve
+npm start
 ```
 
-Runs on **http://localhost:4200** and calls the backend at
-`http://localhost:8080`. Make sure the backend is running first.
+The Angular app will run at http://localhost:4200.
 
-## Editing your content later
+## API endpoints
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | /api/profile | Profile details |
+| GET | /api/experience | Work experience |
+| GET | /api/skills | Skills by category |
+| GET | /api/projects | Project list |
+| GET | /api/achievements | Achievements |
+| GET | /api/certifications | Certifications |
+| GET | /api/education | Education history |
+| POST | /api/contact | Save a contact form message |
 
-Right now, updates go through `backend/src/main/resources/data.sql`
-(edit it, then temporarily set `spring.sql.init.mode=always` again and
-restart). If you want to edit content live from the browser instead of
-touching code, the next step would be a small admin page using the
-`PUT`/`POST`/`DELETE` endpoints already built into the controllers —
-just ask and I'll wire that up.
+## Content and data
+- The app uses SQL seed data to populate the portfolio content.
+- If you update the seed data, restart the backend or rebuild the containers so the data is reloaded.
+- The repository includes ignore files so local environment variables, dependencies, build output, and editor files do not get committed accidentally.
 
-## Deploying for real
-
-- **Frontend**: `ng build` → deploy the `dist/` folder to Vercel/Netlify
-- **Backend**: deploy to Render/Railway (needs Java 17 runtime)
-- **Database**: use a hosted MySQL (PlanetScale, Railway MySQL, AWS RDS)
-- Update `baseUrl` in `frontend/src/app/services/portfolio.service.ts`
-  to your deployed backend URL before building for production.
+## Notes for contributors
+- Create local .env files for backend and database settings. These are ignored by Git and should never be committed.
+- If you are new to the project, do not worry about the ignore rules at first; just create the .env files listed above and the app will run normally.
+- The root .gitignore and .dockerignore files are already set up for this project so local secrets, dependencies, build output, and editor files stay out of Git.
