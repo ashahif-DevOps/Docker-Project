@@ -1,6 +1,10 @@
-# Shahif A Portfolio
+# Shahif A - Full-Stack DevOps & Backend Java Developer Portfolio
+
+## Project Overview
 
 A full-stack portfolio website built with Angular, Spring Boot, and MySQL. The frontend displays your profile, experience, skills, projects, certifications, and achievements, while the backend exposes REST APIs and the contact form stores messages in the database.
+
+![Portfolio Preview](./portfolio-website-screenshot.png)
 
 ## Tech stack
 - Frontend: Angular 18 + TypeScript
