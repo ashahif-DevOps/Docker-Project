@@ -15,15 +15,15 @@ INSERT INTO profile (full_name, title, location, phone, email, linkedin_url, sum
 
 -- ---------- SKILLS ----------
 INSERT INTO skill (category, items) VALUES
-('Cloud Platforms', 'Amazon Web Services (AWS) - EC2, VPC, S3, IAM; Microsoft Azure - App Service, Azure DevOps, Application Insights'),
-('Containerization and Orchestration', 'Docker, Kubernetes'),
-('CI/CD Tools', 'Jenkins, GitHub Actions, Azure DevOps Pipelines'),
+('Cloud Platforms', 'Amazon Web Services (AWS), Microsoft Azure'),
+('Scripting Languages', 'Shell Scripting, Bash'),
+('Operating Systems', 'Ubuntu, Linux'),
+('Version Control and Tools', 'Git, Postman, ServiceNow (ITIL)'),
 ('Infrastructure as Code', 'Terraform, Ansible'),
-('Monitoring and Observability', 'Prometheus, Grafana, Azure Application Insights, ServiceNow (ITIL)'),
-('Programming and Frameworks', 'Java, Spring Boot, REST APIs'),
-('Scripting and Operating Systems', 'Shell Scripting, Ubuntu, Linux, SSH'),
-('Version Control and Tools', 'Git, Postman, Jira'),
-('Security', 'Vulnerability remediation using EVM Qualys, secure code fixes, compliance'),
+('CI/CD Tools', 'Jenkins, GitHub Actions, Azure DevOps Pipelines'),
+('Containerization and Orchestration', 'Docker, Kubernetes'),
+('Monitoring and Observability', 'Prometheus, Grafana, Azure Application Insights'),
+('Programming and Frameworks', 'Java, Spring Boot'),
 ('Methodologies', 'Agile, Root Cause Analysis, Team Leadership, Client Communication');
 
 -- ---------- EXPERIENCE ----------
